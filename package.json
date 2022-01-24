@@ -1,0 +1,41 @@
+{
+  "name": "muzi",
+  "private": true,
+  "license": "MIT",
+  "version": "3.0.0",
+  "scripts": {
+    "dev": "vite",
+    "dev-liming": "vite --mode liming",
+    "dev-prod": "vite --mode prod",
+    "build": "vite build",
+    "build-test": "vite build --mode development",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "axios": "^0.21.1",
+    "crypto-js": "^4.1.1",
+    "default-passive-events": "^2.0.0",
+    "lodash": "^4.17.21",
+    "mitt": "^3.0.0",
+    "qs": "^6.10.3",
+    "vant": "3.3.0",
+    "vue": "^3.2.27",
+    "vue-router": "^4.0.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.10.2",
+    "@vue/compiler-sfc": "^3.2.27",
+    "autoprefixer": "^10.4.2",
+    "babel-plugin-lodash": "^3.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-vue": "^7.20.0",
+    "lodash-webpack-plugin": "^0.11.6",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^2.2.19",
+    "vite": "^2.7.12",
+    "vite-plugin-style-import": "^1.4.1"
+  }
+}
