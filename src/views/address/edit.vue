@@ -27,7 +27,7 @@
           readonly
           label-width="3.5rem"
           :right-icon="msg.id ? 'clear' : ''"
-          label="身份证号" 
+          label="身份证号"
           placeholder="请输入您的身份证号"
           :error-message="msg.showIdError ? '请输入正确的身份证号' : ''"
           @click-right-icon="msg.id = ''"

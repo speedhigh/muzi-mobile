@@ -34,8 +34,7 @@
             class="border border-gray-300"
           />
           <div class="text-center text-sm">
-            <p>需支付<span class="text-gray-600">：</span>HK$<span class="font-bold text-xl px-0.5">598</span>/年
-            </p>
+            <p>需支付<span class="text-gray-600">：</span>HK$<span class="font-bold text-xl px-0.5">598</span>/年</p>
           </div>
           <div class="space-y-2 text-center">
             <button

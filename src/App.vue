@@ -24,6 +24,6 @@
     display: none
   }
   iframe[src*="ucweb.com"] { 
-    display: none !important 
+    display: none !important
   }
 </style>

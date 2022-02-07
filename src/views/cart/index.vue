@@ -31,7 +31,7 @@
             v-model="shop.checkcountry"
             checked-color="#f23030"
             class="flex-shrink-0"
-            @click="checkShop(index,shop.checkcountry)"
+            @click="checkShop(index, shop.checkcountry)"
           />
           <p class="text-sm ml-4 truncate">{{ shop.storename }}</p>
         </div>
