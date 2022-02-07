@@ -108,7 +108,7 @@
             readonly
             label-width="70"
             clearable
-            placeholder="请输入持卡人姓名"
+            placeholder="持卡人真实姓名"
           />
         </div>
         <div class="mt-6 text-center">

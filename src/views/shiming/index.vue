@@ -13,7 +13,7 @@
           clearable 
           label-width="4rem" 
           label="真实姓名" 
-          placeholder="请输入您的姓名" 
+          placeholder="请输入您的真实姓名" 
         />
       </div>
 

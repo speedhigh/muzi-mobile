@@ -12,7 +12,7 @@
             v-model="form.name"
             label="姓名"
             label-width="4rem"
-            placeholder="请输入姓名"
+            placeholder="请输入真实姓名"
             required
             clearable
             :rules="rules.name"
