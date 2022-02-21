@@ -183,11 +183,7 @@
         </div>
         <!-- content -->
         <div class="mt-4">
-          <van-image width="100%" height="100%" :src="msg.detail" alt="产品详情" lazy-load @click="toDetail(item.id)">
-            <template #loading>
-              <van-loading type="spinner" size="20" />
-            </template>
-          </van-image>
+          <van-image width="100%" height="100%" :src="msg.detail" alt="产品详情" @click="toDetail(item.id)" />
         </div>
       </section>
     </main>

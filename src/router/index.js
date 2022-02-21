@@ -84,6 +84,11 @@ const router = new createRouter({
 			path:'/user/set/article',
 			component:() => import('../views/user/set/article.vue')
 		},
+		// --我的 -> 用户须知--
+		{
+			path:'/user/notice',
+			component:() => import('../views/user/notice/index.vue')
+		},
 		// --我的 -> 购物指南--
 		{
 			path:'/user/guide',
@@ -256,6 +261,11 @@ router.beforeEach((to,from,next) => {
 				return
 			}
 		})
+	}
+
+	// 分享来的页面
+	if(!window.localStorage.getItem("ba59abbe56e057") && to.query && to.query.ba59abbe56e057) {
+		sessionStorage.setItem('ba59abbe56e057', to.query.ba59abbe56e057)
 	}
 
 	// login

@@ -42,11 +42,7 @@
     </van-action-bar>
 
     <!-- 微信浏览器遮罩提示 -->
-    <div v-if="showTips" class="fixed inset-0 bg-[rgba(0,0,0,0.6)] z-[100]">
-      <div class="w-full text-right pr-8 pt-2">
-        <van-image :src="tipsImg" width="180" height="140" alt="tips" />
-      </div>
-    </div>
+    <muzi-tips :show-tips="showTips" />
   </div>
 </template>
 
@@ -54,8 +50,8 @@
 import { ref, watch, onMounted, reactive } from 'vue';
 import api from '/src/api/index.js'
 import { Toast, Dialog, ActionBar, ActionBarIcon, ActionBarButton } from 'vant'
-import tipsImg from '/src/assets/images/tips.png'
 import { useRoute, useRouter } from 'vue-router'
+import MuziTips from '../../components/MuziTips.vue';
 import DtlHeader from './component/DtlHeader.vue'
 import DtlSwipe from './component/DtlSwipe.vue'
 import SectionInfo from './component/SectionInfo.vue'
@@ -67,6 +63,7 @@ export default {
     [ActionBar.name]:ActionBar,
     [ActionBarIcon.name]:ActionBarIcon,
     [ActionBarButton.name]:ActionBarButton,
+    MuziTips,
     DtlHeader,
     DtlSwipe,
     SectionInfo,
@@ -85,14 +82,14 @@ export default {
     const showTips = ref(false)
     if(route.query.ba59abbe56e057) {
       if(navigator.userAgent.toLowerCase().indexOf('micromessenger') > -1) showTips.value = true
-      sessionStorage.setItem('ba59abbe56e057', route.query.ba59abbe56e057)
-      sessionStorage.setItem('proid', route.params.id)
+      // sessionStorage.setItem('proid', route.params.id)
     }
     onMounted(() => {
       window.scrollTo(0, 0)
       sessionStorage.removeItem('addressId')
       if (sessionStorage.getItem('token')) {
         api.get('/quan/clearquanstorage', { userid: sessionStorage.getItem('id') })
+        api.get("/pay/clearstorage", {userid: sessionStorage.getItem('id'), pid: route.params.id})
       }
     })
     watch(() => route.params, async newParams => {
@@ -142,7 +139,6 @@ export default {
     }
     
     return {
-      tipsImg,
       back() {
         if(route.query.ba59abbe56e057) { router.replace('/'); return }
         router.go(-1) 

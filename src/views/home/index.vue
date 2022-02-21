@@ -1,5 +1,8 @@
 <template>
-  <div class="relative pt-12 pb-12">
+  <div 
+    class="relative pt-12 pb-12"
+    :class="showTips ? 'h-screen overflow-hidden' : ''"
+  >
     <!-- header -->
     <home-header />
     <!-- swiper -->
@@ -75,17 +78,21 @@
     <base-totop />
     <!-- footer -->
     <muzi-footer />
+
+    <!-- 微信浏览器遮罩提示 -->
+    <muzi-tips :show-tips="showTips" />
   </div>
 </template>
 
 <script>
 import { reactive, ref } from 'vue'
 import api from '/src/api/index.js'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { Swipe, SwipeItem, Dialog } from 'vant'
 import BuyVipImg from '/src/assets/images/banner_buyvip.webp'
 import HomeHeader from './component/HomeHeader.vue'
 import MuziCard from '/src/components/MuziCard.vue'
+import MuziTips from '/src/components/MuziTips.vue'
 import MuziFooter from '/src/components/MuziFooter.vue'
 export default {
   components: {
@@ -93,6 +100,7 @@ export default {
     [Swipe.name]:Swipe,
     [SwipeItem.name]:SwipeItem,
     MuziCard,
+    MuziTips,
     MuziFooter
   },
   setup() {
@@ -103,6 +111,7 @@ export default {
     })
 
     const router = useRouter()
+    const route = useRoute()
     const active = ref(0)
 
     // banners 和 kingkong
@@ -110,12 +119,19 @@ export default {
       banners: [],
       kingkong: []
     })
+    
     api.get("/open/home/get_banner").then((res) => { 
       data.banners = res.data.data 
     })
     api.get("/open/home/get_product_class").then((res) => { 
       data.kingkong = res.data.data 
     })
+
+    // 高级经理分享页相关
+    const showTips = ref(false)
+    if(route.query.ba59abbe56e057 && navigator.userAgent.toLowerCase().indexOf('micromessenger') > -1) {
+      showTips.value = true
+    }
 
     // 获取列表相关
     const url = ref('/open/home/guess_like')
@@ -129,13 +145,14 @@ export default {
       { title: '印度药品馆', id: '03' }
     ]
     const changeTab = name => {
-      if (name === '00') {url.value = '/open/home/guess_like'; params.value = {}; return} 
+      if (name === '00') {url.value = '/open/home/guess_like'; params.value = {}; return}
       if (name !== '00') {url.value = '/open/home/search'; params.value = {countryCode: name}; return}
     }
     return {
       BuyVipImg,
       active,
       data,
+      showTips,
       url,
       params,
       tabTitles,

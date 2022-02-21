@@ -8,11 +8,7 @@
     <!-- content -->
     <div class="mt-4">
       <div v-for="(item, index) in list" :key="index">
-        <van-image width="100%" height="100%" :src="item.img" alt="产品详情" lazy-load @click="toDetail(item.id)">
-          <template #loading>
-            <van-loading type="spinner" size="20" />
-          </template>
-        </van-image>
+        <van-image width="100%" height="100%" :src="item.img" alt="产品详情" @click="toDetail(item.id)" />
       </div>
     </div>
   </section>

@@ -61,7 +61,6 @@ export default {
       if(res.data.data > 0) coupon.text = res.data.data + '张可用'
     })
 
-
     const onChange = function(index) {
       if(index === -1) {
         api.get('/quan/clearquanstorage', { userid: sessionStorage.getItem('id') }).then((res) => {

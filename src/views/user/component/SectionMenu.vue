@@ -3,7 +3,7 @@
     <div 
       v-for="(item, index) in list" 
       :key="index" 
-      class="py-5 border-b border-gray-300 last:border-white flex items-center text-sm"
+      class="py-4 border-b border-gray-300 last:border-white flex items-center text-sm"
       @click="clickMenu(item)"
     >
       <p>{{ item.name }}</p>
@@ -22,6 +22,10 @@ export default {
       {
         name: '编码查询',
         url: '',
+      },
+      {
+        name: '用户须知',
+        url: '/user/notice',
       },
       {
         name: '购物指南',

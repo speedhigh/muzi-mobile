@@ -145,7 +145,7 @@ export default {
       captcha: '',
       password: '',
       shenfen: 'user',
-      proid: sessionStorage.getItem('proid') ? sessionStorage.getItem('proid') : '',
+      // proid: sessionStorage.getItem('proid') ? sessionStorage.getItem('proid') : '',
       ba59abbe56e057: sessionStorage.getItem('ba59abbe56e057') ? sessionStorage.getItem('ba59abbe56e057') : ''
     })
     let sfbl = ['/paysuccess']

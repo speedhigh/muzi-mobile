@@ -109,7 +109,7 @@ export default {
           captcha: state.sms, 
           password: Encrypt.Encrypt(state.pwd),
           ba59abbe56e057: sessionStorage.getItem('ba59abbe56e057') ? sessionStorage.getItem('ba59abbe56e057') : '',
-          proid: sessionStorage.getItem('proid') ? sessionStorage.getItem('proid') : ''
+          // proid: sessionStorage.getItem('proid') ? sessionStorage.getItem('proid') : ''
         }).then((res) => {
           if(res.data.code === 20000) {
             let postData = {}
@@ -119,7 +119,7 @@ export default {
               password: Encrypt.Encrypt(state.pwd), 
               phone: state.tel,
               shenfen: 'user',
-              proid: sessionStorage.getItem('proid') ? sessionStorage.getItem('proid') : '',
+              // proid: sessionStorage.getItem('proid') ? sessionStorage.getItem('proid') : '',
               ba59abbe56e057: sessionStorage.getItem('ba59abbe56e057') ? sessionStorage.getItem('ba59abbe56e057') : ''
             })
             api.post("/open/login", postData).then((res) => {
