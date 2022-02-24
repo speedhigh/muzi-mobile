@@ -47,11 +47,11 @@
 </template>
 
 <script>
-import { ref, watch, onMounted, reactive } from 'vue';
+import { ref, watch, onMounted, reactive } from 'vue'
 import api from '/src/api/index.js'
 import { Toast, Dialog, ActionBar, ActionBarIcon, ActionBarButton } from 'vant'
 import { useRoute, useRouter } from 'vue-router'
-import MuziTips from '../../components/MuziTips.vue';
+import MuziTips from '../../components/MuziTips.vue'
 import DtlHeader from './component/DtlHeader.vue'
 import DtlSwipe from './component/DtlSwipe.vue'
 import SectionInfo from './component/SectionInfo.vue'

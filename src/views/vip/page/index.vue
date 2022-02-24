@@ -4,10 +4,7 @@
     <base-square ar="60">
       <div class="relative w-full h-full">
         <!-- top -->
-        <div 
-          class="fixed top-0 inset-x-0 max-w-md w-full mx-auto h-12 flex items-center space-x-3 px-4 z-50" 
-          :class="showTopBg ? 'bg-[#100503]' : ''"
-        >
+        <div class="fixed top-0 inset-x-0 max-w-md w-full mx-auto h-12 flex items-center space-x-3 px-4 z-50 bg-gray-900">
           <!-- logo -->
           <van-image :src="logoImg" width="59" height="21" class="flex-shrink-0" lazy-load />
           <!-- search -->
@@ -84,7 +81,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 import { Swipe, SwipeItem } from 'vant'
 import api from '/src/api/index.js'
 import BannerImg from '/src/assets/images/vip/banner.webp'
@@ -107,18 +104,6 @@ export default {
   setup() {
     const params = ref({})
     const LR_username = localStorage.getItem('phone') ? localStorage.getItem('phone') : ''
-    const showTopBg = ref(false)
-    const scrollHandle = function () {
-      showTopBg.value = (window.scrollY > 25)
-    }
-    // 组件挂载时，添加scroll监听
-    onMounted(() => {
-      window.addEventListener("scroll", scrollHandle, false);
-    })
-    // 组件卸载时，停止监听
-    onUnmounted(() => {
-      window.removeEventListener("scroll", scrollHandle, false);
-    })
     // api.get('/open/newB/getLunBo').then((res) => {
     //   banners.value = res.data.data
     // })
@@ -126,7 +111,6 @@ export default {
       BannerImg,
       params,
       LR_username,
-      showTopBg,
       logoImg,
       IconAll,
       IconChat,

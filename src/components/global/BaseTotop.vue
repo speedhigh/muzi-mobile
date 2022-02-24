@@ -1,8 +1,7 @@
 <template>
   <div
     v-if="showTopIcon"
-    class="fixed h-11 w-11 rounded-full text-gray-200 p-2"
-    style="background-color:rgba(0,0,0,0.6)"
+    class="fixed h-11 w-11 rounded-full text-gray-200 p-2 bg-[rgba(0,0,0,0.6)]"
     :style="{ bottom: position.bottom, right: position.right }"
     @click="toTop"
   >

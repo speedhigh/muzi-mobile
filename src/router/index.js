@@ -286,6 +286,9 @@ router.beforeEach((to,from,next) => {
 	if(!from.meta.keepAlive) {
 		window.scrollTo({ top: 0, behavior: "instant" })
 	}
+	if(from.path === '/vip' && to.path === '/vip/search/list'){
+		window.scrollTo({ top: 0, behavior: "instant" })
+	}
 
 	if(window.sessionStorage.getItem("hobby") === 'newblogin' && to.meta.identity === 'user'){
 		next('/vip' + to.fullPath)

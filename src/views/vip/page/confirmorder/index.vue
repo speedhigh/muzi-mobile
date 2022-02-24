@@ -57,7 +57,7 @@
       currency="HK$"
       button-color="linear-gradient(0deg, #F0AF5B 0%, #F9DFAF 100%)"
       :price="totalPrice"
-      :disabled="submit.disbled"
+      :disabled="submit.disabled"
       button-text="去结算"
       @submit="onSubmit"
     />
@@ -86,19 +86,26 @@ export default {
     const route = useRoute()
     const submit = reactive({
       show: false,
-      disbled: true,
+      disabled: true,
     })
     const orderList = ref({carts: []})
     let getList = function(url, data) {
       api.get(url, data).then((res) => {
         if(res.data.code === 20000) {
           orderList.value = Object.assign(orderList.value, res.data.data)
-          if(res.data.data.usingquan.id) {
-            coupon.value = res.data.data.usingquan.facevalue
-            coupon.text = res.data.data.usingquan.quanname
-            coupon.id = res.data.data.usingquan.id
+          if(res.data.data.usingquan.length > 0) {
+            let arr = []
+            res.data.data.usingquan.forEach(item => {
+              coupon.value += item.facevalue
+              arr.push(item.id)
+            })
+            coupon.text = '已选' + res.data.data.usingquan.length + '张，共减HK$' + coupon.value
+            coupon.id = arr.toString()
+            // coupon.value = res.data.data.usingquan.facevalue
+            // coupon.text = res.data.data.usingquan.quanname
+            // coupon.id = res.data.data.usingquan.id
           }
-          submit.disbled = false
+          submit.disabled = false
           submit.show = true
         }
       })
@@ -129,8 +136,8 @@ export default {
     })
 
     // 税费
-    const tax = computed(() => { 
-      return Math.ceil(price.value * 0.5) / 10 
+    const tax = computed(() => {
+      return Math.ceil(price.value * 0.5) / 10
     })
 
     // 优惠券
@@ -155,10 +162,10 @@ export default {
     const totalPrice = computed(() => {
       let total = (price.value + freight.value + tax.value - coupon.value) * 100
       if(total > 0) {
-        if(orderList.value.carts.length > 0) submit.disbled = false
+        if(orderList.value.carts.length > 0) submit.disabled = false
         return total 
       } else {
-        submit.disbled = true
+        submit.disabled = true
         return 0
       }
     })
@@ -178,11 +185,11 @@ export default {
       cancelCoupon,
       onSubmit() {
         if (!checkedProxy.value) {
-          submit.disbled.value = false
+          submit.disabled.value = false
           Dialog({ title: '请选择同意进口个人申报委托' })
           return
         }
-        submit.disbled = true
+        submit.disabled = true
         let data = { 
           addressinfo: sessionStorage.getItem('addressId'),
           quaninfo:  coupon.id,
@@ -195,7 +202,7 @@ export default {
           data.amount = orderList.value.carts[0].productMain[0].icount
           data.cartinfo = orderList.value.cartinfo
         }
-        api.post("/newB/submitOrder", data, true).then((res) => {
+        api.post("/newB/submitOrder1", data, true).then((res) => {
           if(res.data.code === 20000) {
             api.post("/pay/orderinfo",{ orderid: res.data.data.orderid }, true).then((res) => {
               window.location.href = res.data.data.alipayurl

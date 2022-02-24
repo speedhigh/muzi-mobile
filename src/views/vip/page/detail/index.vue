@@ -228,6 +228,7 @@ export default {
       sessionStorage.removeItem('addressId')
       if (sessionStorage.getItem('token')) {
         api.get('/quan/clearquanstorage', { userid: sessionStorage.getItem('id') })
+        api.get("/pay/clearstorage", { userid: sessionStorage.getItem('id'), pid: route.params.id})
       }
     })
     const msg = ref({
@@ -288,7 +289,7 @@ export default {
       },
       // 添加地址
       onAdd(num) {
-        router.push({ path: '/vip/address/edit', query: { operation: 'creat', from: route.fullPath, addressLength: num } })
+        router.push({ path: '/vip/address/edit', query: {operation: 'creat', from: route.fullPath, addressLength: num} })
       },
      // 加入购物车
       addCart() {
@@ -297,7 +298,7 @@ export default {
         api.post("/newB/add2Cart", data, true).then((res) => {
           if(res.data.code === 20000) Toast.success('成功添加')
           if(res.data.code !== 20000) Toast.fail('加入购物车失败')
-          setTimeout( () => { footer.cartDisabled = false }, 500 )
+          setTimeout(() => {footer.cartDisabled = false}, 500)
         })
       },
       // 购买
@@ -308,10 +309,10 @@ export default {
           Dialog.alert({ message: '您还未实名认证，请先完善信息喲~' }).then(() => {
             sessionStorage.setItem('infoFrom', '/vip/confirmorder?from=detail')
             footer.buyDisabled = false
-            router.push({ path:'/info' }) 
+            router.push({ path:'/info' })
           })
         } else {
-          setTimeout( () => { footer.buyDisabled = false }, 300 )
+          setTimeout(() => { footer.buyDisabled = false }, 300)
           router.push({ path:'/vip/confirmorder', query: { from: 'detail' } })
         }
       }

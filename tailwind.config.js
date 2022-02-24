@@ -8,7 +8,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     boxShadow: {
-      b: '0 1px 0 0 #E6E6E6'
+      b: '0 1px 0 0 #E6E6E6',
+      md: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)'
     },
     extend: {
       backgroundImage: {

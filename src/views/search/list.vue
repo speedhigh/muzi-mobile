@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import MuziCard from '../../components/MuziCard.vue'
 import { useRoute,useRouter } from 'vue-router'
-import BaseTotop from '../../components/global/BaseTotop.vue';
+import BaseTotop from '../../components/global/BaseTotop.vue'
 export default {
   components: {
     MuziCard,
@@ -59,7 +59,7 @@ export default {
       searchContent: route.query.drug,
       sclass: route.query.id,
       countryCode: route.query.countryCode,
-      onefunctioncategory:route.query.secondClass
+      onefunctioncategory: route.query.secondClass
     })
     return {
       params,

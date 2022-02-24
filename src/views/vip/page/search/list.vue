@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { ref, onActivated, computed } from 'vue'
+import { ref, onActivated, computed, onMounted } from 'vue'
 import { useRoute,useRouter } from 'vue-router'
 import VipMenu from '../../components/VipMenu.vue'
 import VipCard from '../../components/VipCard.vue'
@@ -111,6 +111,9 @@ export default {
       if(route.query.name === 'otc') return 'OTC药品'
       if(route.query.name === 'chufang') return '处方药品'
       return ''
+    })
+    onMounted(() => {
+      window.scrollTo(0, 0)
     })
     onActivated(() => {
       // status.value = 1
