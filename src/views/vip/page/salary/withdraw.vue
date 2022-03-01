@@ -190,7 +190,7 @@ export default {
           } else {
             Toast.fail(res.data.msg)
           }
-          setTimeout( () => { btnDisabled.value = false }, 500 )
+          setTimeout(() => { btnDisabled.value = false }, 500)
         })
       }
     }

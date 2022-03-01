@@ -100,9 +100,9 @@ export default {
       },
       save() {
         loading.value = true
-        if(!state.name || !state.id || !state.tel ) { Toast.fail('信息输入不全'); setTimeout( () => { loading.value = false }, 500 ); return }
-        if (!checkId(state.id)) { Toast.fail('身份证号格式不正确'); setTimeout( () => { loading.value = false }, 500 ); return }
-        if (!checkPhone(state.tel)) { Toast.fail('手机号格式不正确'); setTimeout( () => { loading.value = false }, 500 ); return }
+        if(!state.name || !state.id || !state.tel ) { Toast.fail('信息输入不全'); setTimeout(() => { loading.value = false }, 500); return }
+        if (!checkId(state.id)) { Toast.fail('身份证号格式不正确'); setTimeout(() => { loading.value = false }, 500); return }
+        if (!checkPhone(state.tel)) { Toast.fail('手机号格式不正确'); setTimeout(() => { loading.value = false }, 500); return }
         api.post("/myidcard/post", {
           itargetid: sessionStorage.getItem("id"),
           srealname: state.name,
@@ -114,7 +114,7 @@ export default {
             Toast.success('认证成功')
             router.replace({ path: sessionStorage.getItem('shimingFrom')})
           } else { Toast.fail(res.data.msg) }
-          setTimeout( () => { loading.value = false }, 200 )
+          setTimeout(() => { loading.value = false }, 200)
         })
       }
     }

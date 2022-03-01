@@ -32,9 +32,10 @@
           <p>{{ price }}港币</p>
         </div>
         <!-- 运费 -->
-        <div v-show="freight !== 0" class="flex justify-between text-sm">
+        <div v-show="freight > 0 || orderList.yanxitangyouhuiyaopin === 1" class="flex justify-between text-sm">
           <p>运费</p>
-          <p>{{ freight }}港币</p>
+          <p v-if="orderList.yanxitangyouhuiyaopin === 0">{{ freight }}港币</p>
+          <p v-else class="text-red-300">燕喜堂用户专享0运费</p>
         </div>
         <!-- 税费 -->
         <div class="flex justify-between text-sm">
@@ -140,28 +141,22 @@ export default {
         }
       })
     }
-    if (route.query.from === 'cart') {
-      getList('/pay/confirmorder', { userid: sessionStorage.getItem('id'), cartids: sessionStorage.getItem('orderList') })
-    } else {
-      getList('/pay/buynow', { userid: sessionStorage.getItem('id'), pid: sessionStorage.getItem('drugId') })
-    }
+    if (route.query.from === 'cart') getList('/pay/confirmorder', { userid: sessionStorage.getItem('id'), cartids: sessionStorage.getItem('orderList') })
+    if (route.query.from === 'detail') getList('/pay/buynow', { userid: sessionStorage.getItem('id'), pid: sessionStorage.getItem('drugId') })
 
-    // 价格
+    // 商品金额
     const price = computed(() => {
       let p = 0
       orderList.value.carts.forEach((item) => {
-        item.productMain.forEach((i) => {
-          p += i.productMaintbl.iprice * i.icount
-        })
+        item.productMain.forEach((i) => { p += i.productMaintbl.iprice * i.icount })
       })
       return p
     })
 
     // 运费
     const freight = computed(() => {
-      if (orderList.value.vip === 2) return 0
+      if (orderList.value.vip === 2 || price.value >= 700 || orderList.value.yanxitangyouhuiyaopin === 1) return 0
       if(price.value < 500) return 65
-      if(price.value > 700) return 0
       return 20
     })
 
@@ -230,12 +225,15 @@ export default {
           addressinfo: sessionStorage.getItem('addressId'),
           quaninfo:  coupon.id,
           jifenused: 0,
-          tprice: totalPrice.value/100
+          tprice: totalPrice.value/100,
+          cartinfo: '',
+          amount: 0
         }
         if(route.query.from === 'detail') {
           data.amount = orderList.value.carts[0].productMain[0].icount
           data.cartinfo = orderList.value.cartinfo
         } else {
+          delete data.amount
           data.cartinfo = orderList.value.cartinfo + ','
         }
         api.post("/pay/submitorder", data, true).then((res) => {

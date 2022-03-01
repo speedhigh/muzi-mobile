@@ -268,7 +268,7 @@ export default {
                 window.location.reload()
               } 
             })
-            setTimeout( () => { submitLoading.value = false }, 200 )
+            setTimeout(() => { submitLoading.value = false }, 200)
           }).catch(() => { submitLoading.value = false })
         } else {
           // 去结算
@@ -286,7 +286,7 @@ export default {
             })
           } else {
             sessionStorage.setItem('orderList', choiceList)
-            setTimeout( () => { submitLoading.value = false }, 100 )
+            setTimeout(() => { submitLoading.value = false }, 100)
             router.push({ path:'/confirmorder', query:{ from:'cart' } })
           }
         }

@@ -222,7 +222,7 @@ export default {
                 window.location.reload()
               } 
             })
-            setTimeout( () => { submit.loading = false }, 200 )
+            setTimeout(() => { submit.loading = false }, 200)
           }).catch(() => { submit.loading = false })
         } else {
           // 去结算
@@ -239,7 +239,7 @@ export default {
             })
           } else {
             sessionStorage.setItem('orderList', choiceList)
-            setTimeout( () => { submit.loading = false }, 100 )
+            setTimeout(() => { submit.loading = false }, 100)
             router.push({ path:'/vip/confirmorder', query:{ from:'cart' } })
           }
         }

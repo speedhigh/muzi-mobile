@@ -100,10 +100,10 @@ export default {
       // 注册
       registered() {
         registerLoading.value = true
-        if(!state.tel || !state.sms) { Toast.fail('手机号验证码不能为空'); setTimeout( () => { registerLoading.value = false }, 500 ); return }
-        if(!state.pwd) { Toast.fail('密码不能为空'); setTimeout( () => { registerLoading.value = false }, 500 ); return }
-        if(!checkPhone(state.tel)) { Toast.fail('手机号格式不正确'); setTimeout( () => { registerLoading.value = false }, 500 ); return }
-        if (!checkedProxy.value) { Toast.fail('请阅读并勾选协议'); setTimeout( () => { registerLoading.value = false }, 500 ); return }
+        if(!state.tel || !state.sms) { Toast.fail('手机号验证码不能为空'); setTimeout(() => { registerLoading.value = false }, 500); return }
+        if(!state.pwd) { Toast.fail('密码不能为空'); setTimeout(() => { registerLoading.value = false }, 500); return }
+        if(!checkPhone(state.tel)) { Toast.fail('手机号格式不正确'); setTimeout(() => { registerLoading.value = false }, 500); return }
+        if (!checkedProxy.value) { Toast.fail('请阅读并勾选协议'); setTimeout(() => { registerLoading.value = false }, 500); return }
         api.get("/open/register",{ 
           mobile: state.tel, 
           captcha: state.sms, 
@@ -158,7 +158,7 @@ export default {
               Toast.fail(res.data.msg)
             }
           }
-          setTimeout( () => { registerLoading.value = false }, 500 )
+          setTimeout(() => { registerLoading.value = false }, 500)
         })
       }
     }

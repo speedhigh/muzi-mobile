@@ -94,13 +94,9 @@ export default {
         if(res.data.code === 20000) {
           orderList.value = Object.assign(orderList.value, res.data.data)
           if(res.data.data.usingquan.length > 0) {
-            let arr = []
-            res.data.data.usingquan.forEach(item => {
-              coupon.value += item.facevalue
-              arr.push(item.id)
-            })
-            coupon.text = '已选' + res.data.data.usingquan.length + '张，共减HK$' + coupon.value
-            coupon.id = arr.toString()
+            coupon.text = '已选' + res.data.data.usingquan.length + '张，共减HK$' + res.data.data.youhuiquanjiage
+            coupon.id = res.data.data.quanids
+            coupon.value = res.data.data.youhuiquanjiage
             // coupon.value = res.data.data.usingquan.facevalue
             // coupon.text = res.data.data.usingquan.quanname
             // coupon.id = res.data.data.usingquan.id
@@ -111,9 +107,9 @@ export default {
       })
     }
     if (route.query.from === 'cart') {
-      getList('/newB/confirmOrder', {cartids: sessionStorage.getItem('orderList') })
+      getList('/newB/confirmOrder', {cartids: sessionStorage.getItem('orderList')})
     } else {
-      getList('/newB/buyNow', {pid: sessionStorage.getItem('drugId') })
+      getList('/newB/buyNow', {pid: sessionStorage.getItem('drugId')})
     }
     // 价格
     const price = computed(() => {
@@ -126,7 +122,7 @@ export default {
       })
       return p
     })
-    
+
     // 运费
     const freight = computed(() => {
       // if (orderList.value.vip === 2) return 0
@@ -177,7 +173,7 @@ export default {
       tax,
       checkedProxy,
       showProxy() {
-        Dialog({ confirmButtonText: '关闭', title: '进口个人申报委托', message: '本人承诺所购买商品系个人合理自用，不会进行二次销售，针对境外（包括保税区等特殊监管区域）发货的各种商品，现委托商家或其委托的物流商代理申报、代缴税款等通关事宜，本人保证遵守《海关法》和国家相关法律法规，保证所提供的收件人身份信息和收货信息真实完整，无侵犯他人权益的行为，并督促保证代缴义务人足额支付应缴税款。以上委托关系系如实填写，本人愿意接受海关及其他监管部门的监管，并承担相应法律责任。' })
+        Dialog({confirmButtonText: '关闭', title: '进口个人申报委托', message: '本人承诺所购买商品系个人合理自用，不会进行二次销售，针对境外（包括保税区等特殊监管区域）发货的各种商品，现委托商家或其委托的物流商代理申报、代缴税款等通关事宜，本人保证遵守《海关法》和国家相关法律法规，保证所提供的收件人身份信息和收货信息真实完整，无侵犯他人权益的行为，并督促保证代缴义务人足额支付应缴税款。以上委托关系系如实填写，本人愿意接受海关及其他监管部门的监管，并承担相应法律责任。'})
       },
       totalPrice,
       coupon,
@@ -197,7 +193,7 @@ export default {
         }
         if(route.query.from === 'cart') {
           data.cartinfo = orderList.value.cartinfo + ','
-        } 
+        }
         if(route.query.from === 'detail') {
           data.amount = orderList.value.carts[0].productMain[0].icount
           data.cartinfo = orderList.value.cartinfo

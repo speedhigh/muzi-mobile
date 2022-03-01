@@ -195,7 +195,7 @@ export default {
             }
             sessionStorage.removeItem('infoFrom')
           } else { Toast.fail(res.data.msg) }
-          setTimeout( () => { submitDisabled.value = false }, 200 )
+          setTimeout(() => { submitDisabled.value = false }, 200)
         })
       }
     }

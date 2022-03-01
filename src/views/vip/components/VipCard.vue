@@ -92,7 +92,7 @@ export default {
             icount.value = 1
           }
           if(res.data.code !== 20000) Toast.fail('加入购物车失败')
-          setTimeout( () => { cartDisabled.value = false }, 500 )
+          setTimeout(() => { cartDisabled.value = false }, 500)
         })
       }
     }

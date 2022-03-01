@@ -38,7 +38,7 @@
                 </div>
                 <div>
                   <p class="text-sm font-bold line-1">{{ item.name }}</p>
-                  <p class="mt-2 text-xs">2021.12.29 - 2022.06.29</p>
+                  <p class="mt-2 text-xs">{{ item.startAtstr }} - {{ item.endAtstr }}</p>
                 </div>
                 <div v-if="active === 0" class="ml-auto px-3">
                   <van-checkbox 
@@ -115,7 +115,8 @@ export default {
     api.get('/newB/getQuanVipCanUseNum', {userid: sessionStorage.getItem('id')}).then((res) => {
       coupon.count = res.data.data
       tabList.value[0].title = '可用('+ res.data.data +')'
-      if(res.data.data > 0) coupon.text = res.data.data + '张可用'
+      console.log(props.name)
+      if(res.data.data > 0 && !props.name) coupon.text = res.data.data + '张可用'
     })
 
     // 获取可用优惠券列表

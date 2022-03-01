@@ -207,7 +207,7 @@ export default {
             Toast.fail(res.data.msg)
           }
         }
-        setTimeout( () => { loginDisabled.value = false }, 500 )
+        setTimeout(() => { loginDisabled.value = false }, 500)
       })
     }
 

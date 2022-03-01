@@ -49,7 +49,7 @@ export default {
         //       router.push('/login')
         //     })
         //   }
-        //   setTimeout( () => { btnDisbled.value = false }, 500 )
+        //   setTimeout(() => { btnDisbled.value = false }, 500)
         // })
       },
       // back() {

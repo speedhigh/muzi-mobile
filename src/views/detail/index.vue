@@ -186,7 +186,7 @@ export default {
             router.push({ path:'/info' }) 
           })
         } else {
-          setTimeout( () => { footer.buyDisabled = false }, 300 )
+          setTimeout(() => { footer.buyDisabled = false }, 300)
           router.push({ path:'/confirmorder', query: { from: 'detail' } })
         }
       }

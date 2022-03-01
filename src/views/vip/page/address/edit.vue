@@ -200,7 +200,7 @@ export default {
             }
           })
         }
-        setTimeout( () => { saving.value = false }, 500 )
+        setTimeout(() => { saving.value = false }, 500)
       }
     }
   }

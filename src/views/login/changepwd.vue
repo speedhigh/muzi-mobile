@@ -79,8 +79,8 @@ export default {
       // 注册
       confirm() {
         loading.value = true
-        if(!state.oldpwd || !state.pwd || !state.pwd2 ) { Toast.fail('密码不能为空'); setTimeout( () => { loading.value = false }, 300 ); return }
-        if(state.pwd !== state.pwd2 ) { Toast.fail('两次密码输入不一致'); setTimeout( () => { loading.value = false }, 500 ); return }
+        if(!state.oldpwd || !state.pwd || !state.pwd2 ) { Toast.fail('密码不能为空'); setTimeout(() => { loading.value = false }, 300 ); return}
+        if(state.pwd !== state.pwd2 ) { Toast.fail('两次密码输入不一致'); setTimeout(() => { loading.value = false }, 500); return }
         api.put("/userinfo/putpass", {
           userid: sessionStorage.getItem('id'),
           oldpass: Encrypt.Encrypt(state.oldpwd),
@@ -92,7 +92,7 @@ export default {
           } else {
             Toast.fail(res.data.msg)
           }
-          setTimeout( () => { loading.value = false }, 300 )
+          setTimeout(() => { loading.value = false }, 300)
         })
       }
     }

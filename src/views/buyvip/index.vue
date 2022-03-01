@@ -139,7 +139,7 @@ export default {
           } else {
             sessionStorage.setItem('shiming', 0)
           }
-          setTimeout( () => { btnDisabled.value = false }, 500 )
+          setTimeout(() => { btnDisabled.value = false }, 500)
         })
       }
     }
